@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        * {
+            font-family: 'Raleway', sans-serif;
+            
+        }
+
+        html {
+            background-color: #1F1F1F;
+            text-align: center;
+        }
+
+        .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container .buttons {
+            display: inline-block;
+        }
+
+        button {
+            float: left;
+            -moz-column-count: 2;
+            -webkit-column-count: 2;
+            column-count: 2;
+            display: block;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            text-decoration: none;
+            background-color: #1F1F1F;
+            color: white;
+            border: 2px solid #333;
+            letter-spacing: 2px;
+            text-align: center;
+            position: relative;
+            transition: all .35s;
+        }
+
+        button:hover {
+            color: #fff;
+        }
+
+        button:focus {
+            outline: 3;
+            outline-style:dotted;
+            outline-width:10;
+        }
+
+        button:after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #CC3357;
+            transition: all .35s;
+        }
+
+        button:hover:after {
+            width: 100%;
+        }
+
+        #UL_Output {
+            font-family: 'Roboto', sans-serif;
+            overflow-y: scroll;
+        }
+
+        #input-app {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="input-app" placeholder="Application.exe"></input>
+    
+    <div class="container">
+        <div class="buttons">
+            <button onclick="CPPAPI_SelectDll();">Select Dll</button>
+            <button id="inject">Inject</button><br>
+        </div>
+        <textarea readonly name="output" id="UL_Output" cols="90" rows="10"></textarea>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#inject').click(() => {
+            const pName = $('#input-app').val();
+
+            if (pName) {
+                CPPAPI_SetProcess(pName);
+                CPPAPI_Inject();
+            } else {
+                $('#input-app').val('Enter an executable');
+            }
+
+        });
+    </script>
+    <script>
+        const types = {
+            ERROR: "Error: ",
+            WARNING: "Warning: ",
+            INFO: "Info: "
+        };
+
+        var type = null;
+
+        function Log(type, message) {
+            switch (type) {
+                case "E": 
+                    type = types.ERROR;
+                    break;
+
+                case "W": 
+                    type = types.WARNING
+                    break;
+
+                case "I": 
+                    type = types.INFO;
+                    break;
+
+                default: break;
+            }
+
+            $('#UL_Output').append(type.concat(message+"\n"));
+        }
+    </script>
+</body>
+</html>
