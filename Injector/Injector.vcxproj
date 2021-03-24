@@ -147,7 +147,9 @@
     </Link>
     <PreLinkEvent>
       <Command>xcopy "$(ProjectDir)*.dll" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\"
-xcopy "$(ProjectDir)Assets" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\Assets\" /Y /I /Q /E</Command>
+xcopy "$(ProjectDir)Assets" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\Assets\" /Y /I /Q /E
+xcopy "$(ProjectDir)resources" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\resources\" /Y /I /Q /E
+xcopy "$(ProjectDir)Logs" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\Logs\" /Y /I /Q /E</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -184,7 +186,9 @@ xcopy "$(ProjectDir)Assets" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(Pr
     </Link>
     <PreLinkEvent>
       <Command>xcopy "$(ProjectDir)*.dll" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\"
-xcopy "$(ProjectDir)Assets" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\Assets\" /Y /I /Q /E</Command>
+xcopy "$(ProjectDir)Assets" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\Assets\" /Y /I /Q /E
+xcopy "$(ProjectDir)resources" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\resources\" /Y /I /Q /E
+xcopy "$(ProjectDir)Logs" "$(SolutionDir)Bin\$(Configuration)-$(Platform)\$(ProjectName)\Logs\" /Y /I /Q /E</Command>
     </PreLinkEvent>
     <PostBuildEvent>
       <Command>
